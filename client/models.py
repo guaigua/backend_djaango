@@ -20,6 +20,22 @@ class Clients(RestorationsModel):
 
     email = models.EmailField(
         'email address',
+        max_length=30,
+        unique=True,
+        error_messages={
+            'unique': 'A client with that email already exists.'
+        }
+    )
+
+    birthday = models.DateTimeField(
+        'birthday',
+        auto_now_add=False,
+        auto_now=False,
+        null=True,
+        help_text='Day the equipment was purchased.')
+
+    email = models.EmailField(
+        'email address',
         unique=True,
         error_messages={
             'unique': 'A client with that email already exists.'

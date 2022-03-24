@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  web:
+    build: 
+        context: .
+        dockerfile: ${DOCKERFILE}
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      - MYSQL_DATABASE=${DBNAME}
+      - MYSQL_USER=${DBUSER}
+      - MYSQL_PASSWORD=${DBPASSWORD}
+    ports:
+      - "3340:3306"
+
+volumes:
+  dbdata:
