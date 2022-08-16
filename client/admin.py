@@ -2,6 +2,6 @@
 from django.contrib import admin
 
 # My models
-from client.models import Clients
+from client.models import Client
 
-admin.site.register(Clients)
+admin.site.register(Client)

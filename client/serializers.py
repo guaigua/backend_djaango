@@ -5,18 +5,18 @@ from django.core.validators import RegexValidator
 from rest_framework import serializers
 
 # Models
-from client.models import Clients
+from client.models import Client
 
 class ClientModelSerializer(serializers.ModelSerializer):
 
     class Meta:
 
-        model = Clients
+        model = Client
         fields = "__all__"
 
 class ShortClientModelSerializer(serializers.ModelSerializer):
 
     class Meta:
 
-        model =  Clients
+        model =  Client
         fields = ["username"]

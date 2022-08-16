@@ -17,7 +17,7 @@ from rest_framework.permissions import (
 from client import serializers
 
 # My Models
-from client.models import Clients
+from client.models import Client
 
 class ClientViewSet(mixins.ListModelMixin,
                 mixins.RetrieveModelMixin,
@@ -32,6 +32,6 @@ class ClientViewSet(mixins.ListModelMixin,
         Handle CRUD of Client.
     """
 
-    queryset = Clients.objects.all()
+    queryset = Client.objects.all()
     serializer_class = serializers.ClientModelSerializer
     # permissions = [IsAdminUser]
