@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  web:
+  app:
     build: 
         context: .
         dockerfile: ${DOCKERFILE}
@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8002:8000
     depends_on:
       - db
   db:
@@ -22,8 +22,9 @@ services:
       - MYSQL_DATABASE=${DBNAME}
       - MYSQL_USER=${DBUSER}
       - MYSQL_PASSWORD=${DBPASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DBROOTPASSWORD}
     ports:
-      - "3340:3306"
+      - "3341:3306"
 
 volumes:
   dbdata:

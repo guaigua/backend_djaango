@@ -1,3 +1,0 @@
-#!/bin/bash
-source environments/development_settings.sh
-python3 manage.py runserver 127.0.0.1:8000
