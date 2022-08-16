@@ -49,9 +49,9 @@ class Client(RestorationsModel):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
 
     
-    company = models.ForeignKey('company.Company', on_delete=models.SET_NULL, null=True, blank=False) # -- required
+    company = models.ForeignKey('company.Company', on_delete=models.SET_NULL, null=True, blank=True)  # -- required
     # Address Fields
-    
+
     address = models.TextField(max_length=250, null=True, blank=True) 
     city = models.CharField('city', max_length=30, null=True, blank=False) # -- required
     state = models.CharField('state', max_length=30, null=True, blank=False) # -- required
