@@ -13,22 +13,16 @@ services:
     depends_on:
       - postgres
   postgres:
-    container_name: postgres_demo
-    image: postgres:latest
+    container_name: postgres_unicloud
+    image: postgres:14.1
+    volumes:
+      - ./docker/psql:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: ${DBNAME}
       POSTGRES_USER: ${DBUSER}
       POSTGRES_PASSWORD: ${DBPASSWORD}
-      PGDATA: /data/postgres
-    volumes:
-       - postgres-db:/data/postgres
     ports:
-      - "5432:5432"
-
-
-volumes:
-  postgres-db:
-    driver: local
+      - "5434:5432"
 
 
 
