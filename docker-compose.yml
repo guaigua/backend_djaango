@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   app:
+    container_name: django_unicloud
     build: 
         context: .
         dockerfile: Dockerfile
@@ -12,17 +13,19 @@ services:
       - 8002:8000
     depends_on:
       - postgres
+
   postgres:
     container_name: postgres_unicloud
     image: postgres:14.1
+    command: postgres -c stats_temp_directory=/tmp
     volumes:
       - ./docker/psql:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: ${DBNAME}
       POSTGRES_USER: ${DBUSER}
       POSTGRES_PASSWORD: ${DBPASSWORD}
-    ports:
-      - "5434:5432"
+      POSTGRES_DBPORT: ${DBPORT}
+
 
 
 
