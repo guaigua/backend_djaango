@@ -15,9 +15,9 @@ import os
 import raven
 from decouple import config
 
-# Handler DB
-import pymysql
-pymysql.install_as_MySQLdb()
+# # Handler DB
+# import pymysql
+# pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
@@ -58,14 +58,13 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
    'company',
    'client',
-   'utils'
+   'utils',
+   'drf_yasg'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 CORS_ORIGIN_ALLOW_ALL = True 
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,8 +112,8 @@ DATABASES = {
         'NAME':config('DBNAME'),
         'USER': config('DBUSER'),
         'PASSWORD': config('DBPASSWORD'),
-        "PORT":'',
         'HOST': config('DBHOST'), 
+        "PORT": config('DBPORT'), 
         },
         'OPTIONS': {
             'sql_mode': 'traditional',
