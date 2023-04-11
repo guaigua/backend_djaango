@@ -21,6 +21,7 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -53,13 +54,14 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'drf_yasg'
 ]
 
 LOCAL_APPS = [
-   'company',
-   'client',
-   'utils',
-   'drf_yasg'
+   'apps.company',
+   'apps.client',
+   'apps.utils'
+  
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -162,7 +164,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Media settings
 MEDIA_ROOT = 'media'

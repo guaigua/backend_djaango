@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 from rest_framework import serializers
 
 # Models
-from client.models import Client
+from apps.client.models import Client
 
 class ClientModelSerializer(serializers.ModelSerializer):
 

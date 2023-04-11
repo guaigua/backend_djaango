@@ -14,10 +14,10 @@ from rest_framework.permissions import (
 )
 
 # Serializers
-from client import serializers
+from apps.client import serializers
 
 # My Models
-from client.models import Client
+from apps.client.models import Client
 
 class ClientViewSet(mixins.ListModelMixin,
                 mixins.RetrieveModelMixin,

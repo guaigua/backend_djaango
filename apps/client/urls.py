@@ -5,7 +5,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 # Views
-from client import views
+from apps.client import views
 
 router = DefaultRouter()
 router.register(r'client', views.ClientViewSet, basename='client')

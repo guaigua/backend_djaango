@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
 
-RUN mkdir -p docker/psql
+
 COPY requirements.txt .
 
 RUN pip install --upgrade pip

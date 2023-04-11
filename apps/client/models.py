@@ -3,7 +3,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 # Utilities
-from utils.models import RestorationsModel
+from apps.utils.models import RestorationsModel
 
 
 class Client(RestorationsModel):
