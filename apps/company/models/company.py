@@ -8,6 +8,9 @@ from django.core.validators import RegexValidator
 # Utilities
 from apps.utils.models import RestorationsModel
 
+from django.contrib.admin.models import LogEntry
+from django.contrib.contenttypes.fields import GenericRelation
+
 class Company(RestorationsModel):
 
     """
@@ -34,6 +37,7 @@ class Company(RestorationsModel):
             'unique': 'A Company with that email already exists.'
         }
     )
+    history = GenericRelation(LogEntry)
 
     def __str__(self):
         """Return name."""

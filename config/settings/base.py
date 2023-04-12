@@ -61,7 +61,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
    'apps.company',
    'apps.client',
-   'apps.utils'
+   'apps.utils',
+   'apps.vacation'
   
 ]
 
