@@ -29,6 +29,3 @@ services:
       POSTGRES_DBPORT: ${DBPORT}
     ports:
       - 5432:5432
-
-
-  
