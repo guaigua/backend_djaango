@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  app:
+  django_backend:
     container_name: django_backend
     build:
         context: .
@@ -13,10 +13,10 @@ services:
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8001:8000
     depends_on:
-      - postgres
-  postgres:
+      - postgres_backend
+  postgres_backend:
     container_name: postgres_backend
     image: postgres:14.1
     command: postgres -c stats_temp_directory=/tmp
@@ -28,4 +28,4 @@ services:
       POSTGRES_PASSWORD: ${DBPASSWORD}
       POSTGRES_DBPORT: ${DBPORT}
     ports:
-      - 5432:5432
+      - 5433:5432
