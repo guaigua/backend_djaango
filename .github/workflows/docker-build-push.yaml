@@ -35,12 +35,12 @@ jobs:
     - uses: actions/checkout@master
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
+      with: # defaults to latest kubectl binary version
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: set image --record deployment/django-devtools container=dockerhub.uni.cloud/dev-tools-image:${{ github.sha }}
+    - name: verify deployment
+      uses: steebchen/kubectl@v2.0.0
       with:
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        args: set image deployment/django-devtools django-devtools=dockerhub.uni.cloud/dev-tools-image:${{ github.sha }}
-    - name: verify deployment
-      uses: tale/kubectl-action@v1
-      with:
-        base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA }}
-        kubectl-version: v1.27.1
-    - run: kubectl rollout status deployment/django-devtools  
+        version: v1.27.0 # specify kubectl binary version explicitly
+        command: rollout status deployment/django-devtools  
