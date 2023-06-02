@@ -1,6 +1,6 @@
 import os
 import time
-os.environ.setdefault("DJANGO_SETTINGS_MODULE","config.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE","config.settings.dev")
 import django, random as ran
 from random import random
 
