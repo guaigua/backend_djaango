@@ -42,4 +42,4 @@ jobs:
       uses: tale/kubectl-action@v1
       with:
         base64-kube-config: ${{ secrets.KUBE_CONFIG }}
-    - run: rollout status deployment/django-devtools  
+    - run: kubectl rollout status deployment/django-devtools  
