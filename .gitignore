@@ -285,3 +285,4 @@ static/rest_framework
 # End of https://www.toptal.com/developers/gitignore/api/django,python,vscode,windows,macos
 # Docker data
 .docker
+.vscode

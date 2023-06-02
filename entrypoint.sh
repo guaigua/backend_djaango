@@ -12,7 +12,7 @@ python manage.py migrate --noinput
 
 
 gunicorn config.wsgi:application \
-    --env DJANGO_SETTINGS_MODULE=config.settings.dev \
+    --env DJANGO_SETTINGS_MODULE=config.settings \
     --name backend_django \
     --bind 0.0.0.0:8000 \
     --timeout 600 \

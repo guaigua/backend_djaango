@@ -1,3 +1,6 @@
 from django.test import TestCase
+from .models import Company
 
-# Create your tests here.
+class CompanyModelTestCase(TestCase):
+    def test_meu_teste():
+        assert 1 == 1
