@@ -34,16 +34,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
-    - uses: actions/checkout@master
-    - name: deploy to cluster
-      uses: steebchen/kubectl@v2.0.0
-      with:
-        config: ${{ secrets.KUBE_CONFIG }}
-        version: v1.27.1
-        command: set image deployment/django-devtools django-devtools=dockerhub.uni.cloud/dev-tools-image:${{ github.sha }}
-    - name: verify deployment
-      uses: steebchen/kubectl@v2.0.0
-      with:
-        config: ${{ secrets.KUBE_CONFIG }}
-        version: v1.27.1
-        command: rollout status deployment/django-devtools
+      - uses: actions/checkout@master
+      - name: deploy to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: ${{ secrets.KUBE_CONFIG }}
+          version: v1.27.1
+          binaries-url: "https://dl.k8s.io/release/v1.27.1/bin/linux/amd64/kubectl"
+          args: set image deployment/django-devtools django-devtools=dockerhub.uni.cloud/dev-tools-image:${{ github.sha }}
+      - name: verify deployment
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: ${{ secrets.KUBE_CONFIG }}
+          version: v1.27.1
+          binaries-url: "https://dl.k8s.io/release/v1.27.1/bin/linux/amd64/kubectl"
+          command: rollout status deployment/django-devtools 
