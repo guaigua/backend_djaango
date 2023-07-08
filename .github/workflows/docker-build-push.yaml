@@ -45,6 +45,6 @@ jobs:
         with:
           namespace: default
           manifests: |
-            /home/ubuntu/development.yaml
+            manifests/development.yaml
           images: |
             dockerhub.uni.cloud/dev-tools-image:latest
