@@ -29,38 +29,22 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/dev-tools-image:${{ github.sha }}
             ${{ env.DOCKER_REGISTRY }}/dev-tools-image:latest
-  test: 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: yokawasa/action-setup-kube-tools@v0.9.2
-      with:
-        setup-tools: |
-          kubectl
-        kubectl: '1.27.2'
-    - run: |
-        kubectl version --client
-        mkdir -p ˜/.kube/
-        echo ${{ secrets.KUBERNETES_SECRET }} | base64 > ˜/.kube/config
-        cd .kustomize
-        kustomize edit set image backend-staging=dockerhub.uni.cloud/backend-staging-image:lastest
-        kustomize build . | kubectl apply -f -
 
   deploy-to-cluster:
     name: deploy to cluster
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: deploy to cluster
-      uses: steebchen/kubectl@v2.0.0
-      with:
-        config: ${{ secrets.KUBERNETES_SECRET }}
-        version: v1.27.2
-        command: set image deployments.apps/django-devtools django-devtools=dockerhub.uni.cloud/dev-tools-image:latest
-    - name: verify deployment
-      uses: steebchen/kubectl@v2.0.0
-      with:
-        config: ${{ secrets.KUBERNETES_SECRET }}
-        version: v1.27.2
-        command: rollout status deployments.apps/django-devtools
- 
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: service-account
+          k8s-url: https://k8s.uni.cloud:6443
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: default
+          manifests: |
+            development.yaml
+          images: |
+            dockerhub.uni.cloud/dev-tools-image:latest
