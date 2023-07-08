@@ -42,8 +42,10 @@ jobs:
         kubectl version --client
         mkdir -p ˜/.kube/
         echo ${{ secrets.KUBERNETES_SECRET }} | base64 > ˜/.kube/config
-        kubectl get nodes
-        kubectl set image  deployment.apps/backend-staging backend-staging=dockerhub.uni.cloud/backend-staging-image:lastest
+        cd .kustomize
+        kustomize edit set image backend-staging=dockerhub.uni.cloud/backend-staging-image:lastest
+        kustomize build . | kubectl apply -f -
+
   deploy-to-cluster:
     name: deploy to cluster
     runs-on: ubuntu-latest
