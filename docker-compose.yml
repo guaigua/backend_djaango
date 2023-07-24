@@ -1,8 +1,8 @@
 version: "3.3"
 
 services:
-  django_adm:
-    container_name: django_adm
+  django_base:
+    container_name: django_base
     build:
         context: .
         dockerfile: Dockerfile
@@ -13,11 +13,11 @@ services:
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8001:8000
     depends_on:
-      - postgres_adm
-  postgres_adm:
-    container_name: postgres_adm
+      - postgres_base
+  postgres_base:
+    container_name: postgres_base
     image: postgres:14.1
     command: postgres -c stats_temp_directory=/tmp
     volumes:
@@ -28,4 +28,4 @@ services:
       POSTGRES_PASSWORD: ${DBPASSWORD}
       POSTGRES_DBPORT: ${DBPORT}
     ports:
-      - 5432:5432
+      - 5434:5432
