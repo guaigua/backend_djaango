@@ -1,5 +1,4 @@
 version: "3.3"
-
 services:
   django_base:
     container_name: django_base
