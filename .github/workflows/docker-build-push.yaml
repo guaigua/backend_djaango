@@ -32,9 +32,10 @@ jobs:
 
   deploy-to-cluster:
     name: deploy to cluster
+    needs: build-and-push 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
@@ -46,4 +47,4 @@ jobs:
         config: ${{ secrets.KUBERNETES_SECRET }}
         version: v1.27.4
         binaries-url: "https://dl.k8s.io/release/v1.27.4/bin/linux/amd64/kubectl" 
-        command: rollout status deployment.apps/django-devtools
+        command: rollout status deployment.apps/django-devtools  --namespace=backend-staging
