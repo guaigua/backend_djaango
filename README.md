@@ -36,3 +36,5 @@ Install and run locally from a virtual environment
 
 9. Open http://0.0.0.0:8000 in your browser.
 
+10. It's Working
+
