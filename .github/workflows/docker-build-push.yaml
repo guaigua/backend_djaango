@@ -39,7 +39,7 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBERNETES_SECRET }}
-        command: get all
+        command: set image deployment/django-devtools django-devtools=dockerhub.uni.cloud/dev-tools-image:latest
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       with:
