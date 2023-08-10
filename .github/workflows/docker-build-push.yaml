@@ -48,3 +48,8 @@ jobs:
         version: v1.27.4
         binaries-url: "https://dl.k8s.io/release/v1.27.4/bin/linux/amd64/kubectl" 
         command: rollout status deployment.apps/django-devtools  --namespace=backend-staging
+    - name: restart pods
+      uses: steebchen/kubectl@v2.0.0
+      with:
+        config: ${{ secrets.KUBERNETES_SECRET }}
+        command: rollout restart deployment.apps/django-devtools --namespace=backend-staging
