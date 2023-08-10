@@ -45,5 +45,5 @@ jobs:
       with:
         config: ${{ secrets.KUBERNETES_SECRET }}
         version: v1.27.4
-        binaries-url: "https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl" 
+        binaries-url: "https://dl.k8s.io/release/v1.27.4/bin/linux/amd64/kubectl" 
         command: rollout status deployment/django-devtools
