@@ -36,9 +36,10 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    
+    #accounts
+    path('', include(('apps.accounts.urls', 'accounts'), namespace='accounts')),
     # client
-    path('customers/', include(('apps.client.urls', 'client'), namespace='client')),
+    path('', include(('apps.client.urls', 'client'), namespace='client')),
 
     #swagger
     re_path(
