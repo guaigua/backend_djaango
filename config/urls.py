@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 # Code made to generate Swagger documentation automatically through drf_yasg
 schema_view = get_schema_view(
     openapi.Info(
-        title="Unicloud Broker APIs",
+        title="Backend APIs",
         default_version='v1',
         description="APIs Broker",
         license=openapi.License(name="BSD License"),
@@ -40,6 +40,12 @@ urlpatterns = [
     path('', include(('apps.accounts.urls', 'accounts'), namespace='accounts')),
     # client
     path('', include(('apps.client.urls', 'client'), namespace='client')),
+
+    # company
+    path('', include(('apps.company.urls', 'company'), namespace='company')),
+
+    # vacation
+    path('', include(('apps.vacation.urls', 'vacation'), namespace='vacation')),
 
     #swagger
     re_path(

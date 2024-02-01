@@ -1,3 +1,8 @@
+# admin.py
 from django.contrib import admin
+from apps.vacation.models import Vacation, VacationCalendar
 
-# Register your models here.
+
+
+admin.site.register(Vacation)
+admin.site.register(VacationCalendar)

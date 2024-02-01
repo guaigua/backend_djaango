@@ -10,3 +10,4 @@ class Vacation(models.Model):
 
     def __str__(self):
         return f"Vacation of {self.client}: {self.days_available()} days available"
+
